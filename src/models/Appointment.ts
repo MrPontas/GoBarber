@@ -1,5 +1,14 @@
-// import { uuid } from 'uuidv4';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable camelcase */
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import User from './User';
 
 @Entity('appointments')
 class Appointment {
@@ -7,15 +16,20 @@ class Appointment {
   id: string;
 
   @Column('varchar')
-  provider: string;
+  provider_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' })
+  provider: User;
 
   @Column('timestamp with time zone')
   date: Date;
 
-  // constructor({ provider, date }: Omit<Appointment, 'id'>) {
-  //   this.id = uuid();
-  //   this.provider = provider;
-  //   this.date = date;
-  // }
+  @CreateDateColumn()
+  // eslint-disable-next-line camelcase
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
 export default Appointment;

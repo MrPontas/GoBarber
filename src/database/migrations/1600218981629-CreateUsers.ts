@@ -9,7 +9,7 @@ export default class CreateUsers1600218981629 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'varchar', // vai ser um uuid
+            type: 'uuid', // vai ser um uuid
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
@@ -21,8 +21,11 @@ export default class CreateUsers1600218981629 implements MigrationInterface {
           {
             name: 'email',
             type: 'varchar',
-            isNullable: false,
             isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
           },
           {
             name: 'created_at',
