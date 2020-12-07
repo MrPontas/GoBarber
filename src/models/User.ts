@@ -26,5 +26,8 @@ class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Column('varchar')
+  avatar: string;
 }
 export default User;
